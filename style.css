@@ -1,0 +1,80 @@
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#calc-con{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    height: 80%;
+    align-items: center;
+    border: black;
+    background-color: grey;
+}
+
+#screen {
+    background-color: green;
+    height: 30%;
+    width: 85%;
+    margin: 7%;
+    display: flex;
+    flex-direction: column;
+}
+
+#result {
+    flex: 1;
+    font-size: 40px;
+}
+
+#numinp {
+    font-size: 30px;
+    text-align: right;
+}
+
+#buttons-con{
+    background-color: indigo;
+    height: 60%;
+    width: 85%;
+    margin: 7%;
+    margin-top: 0%;
+    display: flex;
+}
+
+#numpad {
+    width: 60%;
+    background-color: yellow;
+    display: flex;
+    flex-direction: column;
+}
+
+.nums{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    gap: 5%;
+}
+
+.nums > button {
+    padding: 15px 20px;
+}
+
+#opspad {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.ops{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.ops > button {
+    padding: 15px 50px;
+}

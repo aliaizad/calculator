@@ -1,20 +1,21 @@
 const add = function() {
 	const addArray = Array.from(arguments);
-  const add = addArray.reduce((total, element) => {
+    const add = addArray.reduce((total, element) => {
     return total += element;
-  }, 0);
-  return add;
+    }, 0);
+    return add;
 };
 
 const subtract = function() {
-	const subArray = Array.from(arguments);
-  const subtract = subArray.reduce((total, element) => {
+    const subArray = Array.from(arguments);
+    const subtract = subArray.reduce((total, element) => {
     if (total === 0) {
       total = element;
+      return total;
     }
     return (total - element);
-  })
-  return subtract;
+    }, 0);
+    return subtract;
 };
 
 const multiply = function() {
@@ -30,8 +31,14 @@ const divide = function() {
     const divide = divideArray.reduce((total, element) => {
         if (total === 0) {
             total = element;
+            return total;
         }
         return (total/element);
     }, 0);
     return divide;
 }
+
+const operate = function (operator, num1, num2) {
+    return operator(num1, num2);
+}
+
