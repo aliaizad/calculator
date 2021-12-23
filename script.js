@@ -42,3 +42,13 @@ const operate = function (operator, num1, num2) {
     return operator(num1, num2);
 }
 
+//when a num button is clicked,
+//set up an event listener for the num buttons to notice the click
+//find the number that the button represent
+//store the number in a variable
+//change the inner text of the num input to that variable
+//if a user click another num button it will concatenate
+//the number appears on the num input
+const num = document.querySelectorAll('.num');
+num.forEach((button) => button.addEventListener('click'))
+console.log(num);

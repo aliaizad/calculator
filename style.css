@@ -8,20 +8,21 @@ body{
 #calc-con{
     display: flex;
     flex-direction: column;
-    width: 30%;
-    height: 80%;
     align-items: center;
-    border: black;
-    background-color: grey;
+    background-color: black;
+    justify-content: center;
+    min-width: 325px;
+    min-height: 375px;
+    box-sizing: border-box;
+
 }
 
 #screen {
     background-color: green;
-    height: 30%;
-    width: 85%;
-    margin: 7%;
     display: flex;
     flex-direction: column;
+    min-width: 275px;
+    min-height: 120px;
 }
 
 #result {
@@ -36,45 +37,23 @@ body{
 
 #buttons-con{
     background-color: indigo;
-    height: 60%;
-    width: 85%;
-    margin: 7%;
-    margin-top: 0%;
     display: flex;
+    min-width: 275px;
+    min-height: 200px;
 }
 
-#numpad {
-    width: 60%;
-    background-color: yellow;
+#buttons-con > div {
     display: flex;
     flex-direction: column;
-}
-
-.nums{
     flex: 1;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    display: flex;
-    gap: 5%;
 }
 
-.nums > button {
-    padding: 15px 20px;
+#buttons-con > div > button {
+    box-sizing: border-box;
+    text-align: center;
+    min-width: 43px;
+    min-height: 33px;
 }
 
-#opspad {
-    display: flex;
-    flex-direction: column;
-    width: 40%;
-}
-
-.ops{
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center
-}
-
-.ops > button {
-    padding: 15px 50px;
-}
