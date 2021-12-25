@@ -43,24 +43,29 @@ const operate = function () {
     const operationArray = arguments[0];
     const numArray = arguments[1];
     let total = 0;
-    let operator;
-    for (let i = 0; i < operationArray.length; i++) {
-        if (operationArray[i] === '+') {
-            operator = add; 
-        } else if (operationArray[i] === '-') {
-            operator = subtract;
-        } else if (operationArray[i] === 'x') {
-            operator = multiply;
+    while (operationArray.length > 0) {
+        if (operationArray.includes('x')) {
+            total = calcRemove('x', multiply, operationArray, numArray);
+        } else if (operationArray.includes('\xF7')) {
+            total = calcRemove('\xF7', divide, operationArray, numArray);
+        } else if (operationArray.includes('+')) {
+            total = calcRemove('+', add, operationArray, numArray);
         } else {
-            operator = divide;
-        }
-
-        if (total === 0) {
-            total = operator(numArray[i], numArray[i+1]);
-        } else {
-            total = operator(total, numArray[i+1])
+            total = calcRemove('-', subtract, operationArray, numArray);
         }
     }
+    return total;
+}
+//a function that evaluates multiplication and division first and then removing the
+//sign from the opArray
+//total is added into the array for the next operation;
+function calcRemove (opStr, opFunction, operationArray, numArray) {
+    let ind = operationArray.indexOf(opStr);
+    let total = opFunction(numArray[ind], numArray[ind+1]);
+    operationArray.splice(ind, 1);
+    numArray.splice(ind, 1);
+    numArray.splice(ind, 1);
+    numArray.splice(ind, 0, total);
     return total;
 }
 //when a num button is clicked,
@@ -87,7 +92,7 @@ function showInput (e) {
 const operator = document.querySelectorAll('.operator');
 operator.forEach((button) => button.addEventListener('click', storeNum));
 let opSymbol;
-const opeArray = [];
+let opeArray = [];
 let sep = ['x', '+', '-', '\xF7'];
 let reg = sep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
 function storeNum(e) {
@@ -117,11 +122,25 @@ equal.addEventListener('click', calculate);
 
 function calculate () {
     let numArray = displayOut.split(new RegExp(reg));
-    numArray = numArray.map(e => e = +e);
+    numArray = numArray.map(num => num = +num);
     const resultOut = operate(opeArray, numArray);
     resultScreen.textContent = resultOut;
 }
 
+//set up an event listener for the clear button
+//whenever the button is clicked, 
+//the text content of the result screen is an empty string
+//also the opearray and the numarray is again an empty screen
 
+const clear = document.querySelector('#clear');
+clear.addEventListener('click', clearFn);
+
+function clearFn () {
+    inputScreen.textContent = '';
+    resultScreen.textContent = '';
+    numArray = [];
+    opeArray = [];
+    displayOut = '';
+}
 
 
