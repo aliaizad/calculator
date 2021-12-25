@@ -68,70 +68,50 @@ function calcRemove (opStr, opFunction, operationArray, numArray) {
     numArray.splice(ind, 0, total);
     return total;
 }
-//when a num button is clicked,
-//set up an event listener for the num buttons to notice the click
-//find the number that the button represent
-//store the number in a variable
-//change the inner text of the num input to that variable
-//if a user click another num button it will concatenate
-//the number appears on the num input
-const num = document.querySelectorAll('.num');
-num.forEach((button) => button.addEventListener('click', showInput));
+//setting up the num button
+const butts = document.querySelectorAll('.butts');
+butts.forEach((button) => button.addEventListener('click', showInput));
 let displayOut = '';
 const inputScreen = document.querySelector('#numinp');
+//a function that displays user input on the screen
 function showInput (e) {
     displayOut += e.target.innerText;
     inputScreen.textContent = displayOut;
 }
 
-//when a user click an operator
-//take the number on the input screen and save it
-//output the operator on the display
-//and assign a function of mathematical operations declared above on to a variable
-//based on the button clicked
-const operator = document.querySelectorAll('.operator');
-operator.forEach((button) => button.addEventListener('click', storeNum));
-let opSymbol;
-let opeArray = [];
-let sep = ['x', '+', '-', '\xF7'];
-let reg = sep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
-function storeNum(e) {
-    showInput(e);
-    switch (e.target.innerText) {
-        case '+':
-            opSymbol = '+';
-            break;
-        case '-':
-            opSymbol = '-';
-            break;
-        case 'x':
-            opSymbol = 'x';
-            break;
-        case '\xF7': 
-            opSymbol = '\xF7';                             
-            break;
-    };
-    opeArray.push(opSymbol);
-}
-//and when the equal sign is click,
-//save the nth number and the operators 
-//and operate it
+//setting up the equal sign
 const equal = document.querySelector('#equal');
 const resultScreen = document.querySelector('#result');
 equal.addEventListener('click', calculate);
+let numSep = ['x', '+', '-', '\xF7'];
+let numReg = numSep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
+let opeSep = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let opeReg = opeSep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
 
 function calculate () {
-    let numArray = displayOut.split(new RegExp(reg));
+    //splitting the outputs into two arrays to be funneled in operate()
+    let numArray = displayOut.split(new RegExp(numReg));
+    if (numArray.includes('')) {
+        clearFn();
+        return;
+    }
+    let opeArray = displayOut.split(new RegExp(opeReg));
+    opeArray = opeArray.filter(element => (element !== '' && element !== '.'));
     numArray = numArray.map(num => num = +num);
     const resultOut = operate(opeArray, numArray);
-    resultScreen.textContent = resultOut;
+    //conditionals to determine the significant figures of the result
+    const presicion = resultOut.toString().length
+    if (resultOut === Infinity) {
+        resultScreen.textContent = 'Undefined'
+    } else if (Number.isInteger(resultOut)) {
+        resultScreen.textContent = resultOut;
+    } else if (presicion > 12) {
+        resultScreen.textContent = resultOut.toPrecision(12);
+    } else {
+        resultScreen.textContent = resultOut.toPrecision((presicion - 1));
+    }
 }
-
-//set up an event listener for the clear button
-//whenever the button is clicked, 
-//the text content of the result screen is an empty string
-//also the opearray and the numarray is again an empty screen
-
+//setting up the clear button
 const clear = document.querySelector('#clear');
 clear.addEventListener('click', clearFn);
 
@@ -142,5 +122,14 @@ function clearFn () {
     opeArray = [];
     displayOut = '';
 }
+//setting up the delete button
+const backspace = document.querySelector('#backspace');
+backspace.addEventListener('click', removeChars);
+
+function removeChars() {
+    displayOut = displayOut.slice(0, -1);
+    inputScreen.textContent = displayOut;
+}
+
 
 
