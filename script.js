@@ -78,6 +78,19 @@ function showInput (e) {
     displayOut += e.target.innerText;
     inputScreen.textContent = displayOut;
 }
+//set up operator buttons to be click and that the result will be the next input
+const operator = document.querySelectorAll('.operator');
+operator.forEach((button) => button.addEventListener('click', showAndFunnel));
+let operatorCounter = 0;
+function showAndFunnel(e) {
+    if (clickCounter === 0 || clickCounter === 2) {
+        showInput(e);
+    } else {
+        alert('Press the equal sign again after a calculation');
+    }
+}
+//a function that funnels the results of a previous operation into the next
+//when clicking the operator button
 
 //setting up the equal sign
 const equal = document.querySelector('#equal');
@@ -85,10 +98,20 @@ const resultScreen = document.querySelector('#result');
 equal.addEventListener('click', calculate);
 let numSep = ['x', '+', '-', '\xF7'];
 let numReg = numSep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
-let opeSep = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+let opeSep = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 let opeReg = opeSep.map(e => e.match(/[a-zA-Z0-9]/) ? e : `\\${e}`).join('|');
-
+let clickCounter = 0;
+//a callback function for the equal sign whichs evaluates user input
 function calculate () {
+    //set up a counter for how many times the button is clicked
+    clickCounter++;
+    //if it is clicked twice
+    if (clickCounter === 2) {
+        inputScreen.textContent = resultScreen.textContent;
+        clickCounter = 0;
+        displayOut = inputScreen.textContent;
+        return;
+    }
     //splitting the outputs into two arrays to be funneled in operate()
     let numArray = displayOut.split(new RegExp(numReg));
     if (numArray.includes('')) {
@@ -97,18 +120,23 @@ function calculate () {
     }
     let opeArray = displayOut.split(new RegExp(opeReg));
     opeArray = opeArray.filter(element => (element !== '' && element !== '.'));
+    //if there is no operation, put the input in the results;
+    if (opeArray.length < 1) {
+        resultScreen.textContent = displayOut;
+        return;
+    }
     numArray = numArray.map(num => num = +num);
     const resultOut = operate(opeArray, numArray);
     //conditionals to determine the significant figures of the result
     const presicion = resultOut.toString().length
-    if (resultOut === Infinity) {
+    if (resultOut === Infinity || Number.isNaN(resultOut)) {
         resultScreen.textContent = 'Undefined'
     } else if (Number.isInteger(resultOut)) {
         resultScreen.textContent = resultOut;
     } else if (presicion > 12) {
         resultScreen.textContent = resultOut.toPrecision(12);
     } else {
-        resultScreen.textContent = resultOut.toPrecision((presicion - 1));
+        resultScreen.textContent = resultOut.toPrecision();
     }
 }
 //setting up the clear button
@@ -121,6 +149,7 @@ function clearFn () {
     numArray = [];
     opeArray = [];
     displayOut = '';
+    clickCounter = 0;
 }
 //setting up the delete button
 const backspace = document.querySelector('#backspace');
