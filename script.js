@@ -93,7 +93,7 @@ function showAndFunnel(e) {
 //when clicking the operator button
 
 //setting up the equal sign
-const equal = document.querySelector('#equal');
+const equal = document.getElementById('=');
 const resultScreen = document.querySelector('#result');
 equal.addEventListener('click', calculate);
 let numSep = ['x', '+', '-', '\xF7'];
@@ -140,7 +140,7 @@ function calculate () {
     }
 }
 //setting up the clear button
-const clear = document.querySelector('#clear');
+const clear = document.querySelector('#Escape');
 clear.addEventListener('click', clearFn);
 
 function clearFn () {
@@ -152,7 +152,7 @@ function clearFn () {
     clickCounter = 0;
 }
 //setting up the delete button
-const backspace = document.querySelector('#backspace');
+const backspace = document.querySelector('#Backspace');
 backspace.addEventListener('click', removeChars);
 
 function removeChars() {
@@ -160,5 +160,16 @@ function removeChars() {
     inputScreen.textContent = displayOut;
 }
 
-
+//adding keyboard support
+document.addEventListener('keydown', keypress);
+function keypress(e) {
+    if (e.key === '*') {
+        document.getElementById('x').click();
+    } else if (e.key === 'Enter') {
+        equal.click();
+    } else if (document.getElementById(e.key)) {
+        document.getElementById(e.key).click();
+    }
+    
+}
 
