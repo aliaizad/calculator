@@ -110,6 +110,7 @@ function calculate () {
     clickCounter++;
     //if it is clicked twice
     if (clickCounter === 2) {
+        addLog(inputScreen.textContent, resultScreen.textContent);
         inputScreen.textContent = resultScreen.textContent;
         clickCounter = 0;
         displayOut = inputScreen.textContent;
@@ -133,7 +134,7 @@ function calculate () {
     //conditionals to determine the significant figures of the result
     const presicion = resultOut.toString().length
     if (resultOut === Infinity || Number.isNaN(resultOut)) {
-        resultScreen.textContent = 'Undefined'
+        resultScreen.textContent = 'Undefined';
     } else if (Number.isInteger(resultOut)) {
         resultScreen.textContent = resultOut;
     } else if (presicion > 12) {
@@ -141,6 +142,24 @@ function calculate () {
     } else {
         resultScreen.textContent = resultOut.toPrecision();
     }
+}
+//a function to add div to calc log when equal sign is pressed
+const calclog = document.querySelector('#log-con');
+let divcount = 0;
+function addLog (input, result) {
+    if (input === result) {
+        return;
+    } else if (divcount > 5) {
+        divArray = Array.from(calclog.querySelectorAll('div'));
+        calclog.removeChild(divArray[0]);
+    }
+    const div = document.createElement('div');
+    div.textContent = `${input} = ${result}`;
+    div.setAttribute('style', 'border: black solid; box-sizing: border-box; width: 550px; padding: 10px; border-radius: 15px; font-size: 20px');
+    calclog.appendChild(div);
+    divcount++;
+    console.log(`${divcount} div`);
+    console.log(clickCounter);
 }
 //setting up the clear button
 const clear = document.querySelector('#Escape');
@@ -191,3 +210,4 @@ function removeClass (e) {
         document.getElementById(e.key).classList.remove('black');
     }
 }
+

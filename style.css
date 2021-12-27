@@ -33,7 +33,7 @@ body{
     font-size: 40px;
     font-weight: 1000;
     color: black;
-    margin-left: -30px;
+    margin-left: -20px;
 }
 
 #footer{
@@ -62,7 +62,7 @@ body{
 
 #calc-log {
     min-width: 50%;
-    background-color: coral;
+    background-color: #80CED7;
 }
 #calc-con{
     display: flex;
@@ -139,3 +139,25 @@ button:active {
     color: #80CED7;
 }
 
+#log-con {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 50px;
+    min-width: 50%;
+}
+
+#calc-log > button{
+    margin-top: 48px;
+    width: 550px;
+}
+
+img {
+    box-sizing: border-box;
+    height: 40px;
+}
+
+span {
+    font-size: 20px;
+    margin-left: 5px;
+}
