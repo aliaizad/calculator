@@ -1,45 +1,110 @@
 body{
-    height: 100vh;
+    height: 105vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+#content-container {
+    display: flex;
+
+}
+
+#header{
+    background-color: #80CED7;
+    margin: 0;
+    padding: 30px 0 0 0;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 30%;
+}
+
+#logo{
+    font-size: 40px;
+    font-weight: 1000;
+    color: black;
+    margin-left: -30px;
+}
+
+#footer{
+    background-color: chocolate;
+    margin: 0;
+    padding: 15px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #80CED7;
+    background-color: black;
 }
 
+#content-container {
+    margin: 0;
+    padding: 0px 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    width: 100%;
+    flex: 1;
+    background-color: #80CED7;
+}
+
+#calc-log {
+    min-width: 50%;
+    background-color: coral;
+}
 #calc-con{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: black;
     justify-content: center;
-    min-width: 325px;
-    min-height: 375px;
     box-sizing: border-box;
-
+    min-width: 50%;
+    gap: 5%;
+    margin-top: -33px;
 }
 
 #screen {
-    background-color: green;
+    background-color: #80CED7;
     display: flex;
     flex-direction: column;
-    min-width: 275px;
-    min-height: 120px;
+    min-width: 70%;
+    min-height: 25%;
+    margin-left: 140px;
+    border: black solid;
+    border-radius: 15px;
 }
 
 #result {
     flex: 1;
-    font-size: 40px;
+    font-size: 45px;
+    margin-left: 10px;
 }
 
 #numinp {
-    font-size: 30px;
+    font-size: 40px;
     text-align: right;
+    margin-right: 10px;
 }
 
 #buttons-con{
-    background-color: indigo;
+    background-color: #80CED7;
     display: flex;
-    min-width: 275px;
-    min-height: 200px;
+    min-width: 70%;
+    min-height: 40%;
+    margin-left: 140px;
+    gap: 42px;
 }
 
 #buttons-con > div {
@@ -55,5 +120,22 @@ body{
     text-align: center;
     min-width: 43px;
     min-height: 33px;
+}
+
+button {
+    background-color: #80CED7;
+    border-radius: 15px;
+    border: black solid 2px;
+    transition: all 0.2;
+}
+
+button:active {
+    background-color: black;
+    color: #80CED7;
+  }
+
+.black {
+    background-color: black;
+    color: #80CED7;
 }
 

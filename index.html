@@ -7,47 +7,62 @@
     <title>Calculator</title>
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id='calc-con'>
-        <div id='screen'>
-            <div id='result'>
+    <div id="header">
+        <div id="logo">Calculator</div>
+        <div id="github">
+        </div>
+    </div>
+    <div id="content-container">
+        <div id='calc-con'>
+            <div id='screen'>
+                <div id='result'>
+                </div>
+                <div id='numinp'>
+                </div>
             </div>
-            <div id='numinp'>
+            <div id='buttons-con'>
+                <div>
+                    <button class="butts" id="7">7</button>
+                    <button class="butts" id="4">4</button>
+                    <button class="butts" id="1">1</button>
+                </div>
+                <div>
+                    <button class="butts" id="8">8</button>
+                    <button class="butts" id="5">5</button>
+                    <button class="butts" id="2">2</button>
+                </div>
+                <div>
+                    <button class="butts" id="9">9</button>
+                    <button class="butts" id="6">6</button>
+                    <button class="butts" id="3">3</button>
+                </div>
+                <div>
+                    <button class="operator" id="+">+</button>
+                    <button class="operator" id="x">x</button>
+                    <button class="butts" id="0">0</button>
+                </div>
+                <div>
+                    <button class="operator" id="-">-</button>
+                    <button class="operator" id="/">&#247;</button>
+                    <button class="butts" id=".">.</button>
+                </div>
+                <div>
+                    <button id="Backspace">DEL</button>
+                    <button id="Escape">CE</button>
+                    <button id="=">=</button>
+                </div>
             </div>
         </div>
-        <div id='buttons-con'>
-            <div>
-                <button class="butts" id="7">7</button>
-                <button class="butts" id="4">4</button>
-                <button class="butts" id="1">1</button>
-                <button class="butts" id="0">0</button>
-            </div>
-            <div>
-                <button class="butts" id="8">8</button>
-                <button class="butts" id="5">5</button>
-                <button class="butts" id="2">2</button>
-                <button class="butts" id=".">.</button>
-            </div>
-            <div>
-                <button class="butts" id="9">9</button>
-                <button class="butts" id="6">6</button>
-                <button class="butts" id="3">3</button>
-                <button id="Backspace">DEL</button>
-            </div>
-            <div>
-                <button class="operator" id="+">+</button>
-                <button class="operator" id="x">x</button>
-                <button>!</button>
-                <button id="Escape">CE</button>
-            </div>
-            <div>
-                <button class="operator" id="-">-</button>
-                <button class="operator" id="/">&#247;</button>
-                <button>&#8730</button>
-                <button id="=">=</button>
-            </div>
+        <div id='calc-log'>
         </div>
+    </div>
+    <div id="footer">
+        <div>Copyright &copy; Ali Aizad 2021</div>
     </div>
 </body>
 </html>

@@ -75,8 +75,11 @@ let displayOut = '';
 const inputScreen = document.querySelector('#numinp');
 //a function that displays user input on the screen
 function showInput (e) {
-    displayOut += e.target.innerText;
-    inputScreen.textContent = displayOut;
+    if (displayOut.length < 22) {
+        displayOut += e.target.innerText;
+        inputScreen.textContent = displayOut;
+    }
+    return;
 }
 //set up operator buttons to be click and that the result will be the next input
 const operator = document.querySelectorAll('.operator');
@@ -164,12 +167,27 @@ function removeChars() {
 document.addEventListener('keydown', keypress);
 function keypress(e) {
     if (e.key === '*') {
+        document.getElementById('x').classList.add('black');
         document.getElementById('x').click();
     } else if (e.key === 'Enter') {
+        equal.classList.add('black');
         equal.click();
     } else if (document.getElementById(e.key)) {
+        document.getElementById(e.key).classList.add('black');
         document.getElementById(e.key).click();
     }
-    
 }
+//adding changing colour on keypress
 
+
+document.addEventListener('keyup', removeClass);
+//removing class on keyup
+function removeClass (e) {
+    if (e.key === '*') {
+        document.getElementById('x').classList.remove('black');
+    } else if (e.key === 'Enter') {
+        equal.classList.remove('black');
+    } else if (document.getElementById(e.key)) {
+        document.getElementById(e.key).classList.remove('black');
+    }
+}
